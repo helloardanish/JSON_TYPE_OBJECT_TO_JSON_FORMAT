@@ -22,8 +22,8 @@ formatted_json = format_json(string_data)
 
 pyperclip.copy(formatted_json) # optional to copy on clipboard
 
-#if os.path.isfile('formattedjson.txt'):
- #   print("formatted.txt file already exists. Replacing its contents.")
+#if os.path.isfile('formattedjson.json'):
+ #   print("formattedjson.json file already exists. Replacing its contents.")
 
 with open('formattedjson.json', 'w') as output_file:
     output_file.write(formatted_json)
