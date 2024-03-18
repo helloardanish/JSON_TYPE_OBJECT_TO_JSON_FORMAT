@@ -70,4 +70,9 @@ Window will appear
 
 It is formatted, copy it and use it.
 
+## Download option added to download the formatted json file
+
+![image](https://github.com/helloardanish/JSON_TYPE_OBJECT_TO_JSON_FORMAT/assets/24757027/522f9c33-b563-486b-ab45-b7398df455b9)
+
+
 ## A R
