@@ -1,31 +1,20 @@
-import os
-import re
-import pyperclip
-
-with open('jsonobject.txt', 'r') as file:
-    string_data = file.read()
+import sys
+from MainScreen import MainScreen
+from PyQt6.QtWidgets import QApplication
 
 
-def format_json(json_string):
-    pattern = r'([\{\,]\s*)(\w+?)\s*:'
-    
-    def add_quotes(match):
-        return f'{match.group(1)}"{match.group(2)}":'
-    
-    formatted_json = re.sub(pattern, add_quotes, json_string)
-    
-    formatted_json = formatted_json.replace("'", '"')
-    
-    return formatted_json
+from Logger import logger as log
 
-formatted_json = format_json(string_data)
 
-pyperclip.copy(formatted_json) # optional to copy on clipboard
+class Main:
+    def __init__(self):
+        #super().__init__()
+        self.class_name = "Main"
+        app = QApplication(sys.argv)
+        window = MainScreen()
+        window.show()
+        sys.exit(app.exec())
 
-#if os.path.isfile('formattedjson.json'):
- #   print("formattedjson.json file already exists. Replacing its contents.")
 
-with open('formattedjson.json', 'w') as output_file:
-    output_file.write(formatted_json)
-
-print(formatted_json)
+if __name__ == "__main__":
+    main = Main()
