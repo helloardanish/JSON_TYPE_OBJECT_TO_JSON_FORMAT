@@ -1,6 +1,6 @@
 ## A simple program to convert json type object in programming language to a json type
 
-#### An object in Angular is defied as below
+#### An object in Angular/Tyepescript is defied as below
 
 ```
 data = {
@@ -40,3 +40,34 @@ data = {
 The program will do the same so you don't have to format it mannually. 
 
 Later it can be stored in .json file/JSON format or put the data in postgres database as an insert in jsonb type. It can be store in any other JSON type ORM(key value pair) databases.
+
+
+#### For developer
+ **Step 1 : Download the depency which are required:**
+ <p>Python must be install in system. Dowload libraries PyQt6, pandas using command</p>
+  <p>It is recommended to use virtual environment</p>
+
+```
+  pip install pandas
+  pip install pyqt6
+```
+
+**Step 2 : Run using terminal:**
+
+```
+python3 Main.py
+```
+Window will appear
+![image](https://github.com/helloardanish/JSON_TYPE_OBJECT_TO_JSON_FORMAT/assets/24757027/88b24a07-b0a5-4fdf-9d24-42ef792ca5b0)
+
+**Step 3 : Write JSON object or copy paste from your code:**
+
+![image](https://github.com/helloardanish/JSON_TYPE_OBJECT_TO_JSON_FORMAT/assets/24757027/596a30f6-a8df-4a86-8faf-097c3e802b22)
+
+**Step 3 : Click format button:**
+
+![image](https://github.com/helloardanish/JSON_TYPE_OBJECT_TO_JSON_FORMAT/assets/24757027/f48c0764-da40-4c9e-8f49-d23ffaba94e7)
+
+It is formatted, copy it and use it.
+
+## A R
