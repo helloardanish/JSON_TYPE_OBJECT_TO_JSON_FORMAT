@@ -4,6 +4,7 @@ from PyQt6.QtCore import Qt
 from datetime import datetime
 import base64
 import time
+import json
 from Logger import logger as log
 import pyperclip as ppc
 import re
@@ -17,9 +18,7 @@ class MainScreen(QMainWindow):
         self.today_date = datetime.today().strftime('%d-%b-%Y')
         self.today_day, self.today_month, self.today_year = self.today_date.split('-')
         self.initUI()
-        self.edited_data = None
-        self.table_name = ''
-
+        
     def initUI(self):
         layout = QVBoxLayout()
 
@@ -57,14 +56,16 @@ class MainScreen(QMainWindow):
         # Create Save and Close buttons
         self.format_button = QPushButton("Format")
         self.format_button.setContentsMargins(20, 20, 20, 20)  # Set margins for widget2
-        self.close_button = QPushButton("Close")
         self.copy_button = QPushButton("Copy Formatted JSON")
+        self.download_button = QPushButton("Download JSON")
+        self.close_button = QPushButton("Close")
 
         # Connect button click events to functions
         self.format_button.clicked.connect(self.formatJSON)
         self.close_button.clicked.connect(self.closeApp)
-        self.copy_button.clicked.connect(self.copyQuery)
+        self.copy_button.clicked.connect(self.copyJSON)
         self.copy_button.setEnabled(False)  # Initially disable the download button
+        self.download_button.clicked.connect(self.downloadJSON)
 
 
         # Add buttons to the layout
@@ -76,6 +77,7 @@ class MainScreen(QMainWindow):
         layout.addWidget(self.output_json_label)
         layout.addWidget(self.output_json_edit)
         layout.addWidget(self.copy_button)
+        layout.addWidget(self.download_button)
         layout.addWidget(self.close_button)
         # Set the layout for the central widget
         central_widget.setLayout(layout)
@@ -100,9 +102,21 @@ class MainScreen(QMainWindow):
 
 
 
-    def copyQuery(self):
+    def copyJSON(self):
         ppc.copy(self.output_json_edit.toPlainText())
         self.copy_button.setEnabled(False)
+
+    def downloadJSON(self):
+        # Open a file dialog to save the edited data
+        file_path, _ = QFileDialog.getSaveFileName(self, 'Save JSON Data', '', 'JSON Files (*.json)')
+        jsonOutput = self.output_json_edit.toPlainText()
+        if file_path:
+            try:
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    json.dump(json.loads(jsonOutput), f, indent=4, ensure_ascii=False)
+                log.info(f"{self.class_name} - JSON data saved successfully: {file_path}")
+            except (ValueError, Exception) as e:
+                log.error(f"{self.class_name} - Error saving JSON data: {e}")
     
 
     def checkValidJSON(self, json_string):
